@@ -2,6 +2,8 @@
 
 **Understand what your next post could reveal.**
 
+**Research paper accepted at ACM UIST 2026** — the 39th Annual ACM Symposium on User Interface Software and Technology.
+
 CLOAK is an experimental privacy-awareness assistant. Give it your own posting history and a draft you are considering sharing. It examines how details across those texts may combine, explains potentially revealing phrases, and suggests edits for you to review.
 
 [Read the paper](docs/CLOAK-paper.pdf) · [Paper DOI](https://doi.org/10.1145/3830398.3830723) · [Responsible use](RESPONSIBLE_USE.md)
@@ -134,7 +136,7 @@ CLOAK is intended to help people understand their own exposure. Stalking, doxxin
 
 ## Learn more
 
-Read [CLOAK: A Privacy-Preserving Assistant for Online Social Media Users](docs/CLOAK-paper.pdf) for the research background. The paper contains its reported findings; this demo distribution does not include evaluation scripts, research datasets, participant responses, study materials, or raw evaluation results.
+Read [CLOAK: A Privacy-Preserving Assistant for Online Social Media Users](docs/CLOAK-paper.pdf) (ACM UIST 2026) for the research background. The paper contains its reported findings; this demo distribution does not include evaluation scripts, research datasets, participant responses, study materials, or raw evaluation results.
 
 Sandeep Kalari · Mohan Sunkara · Vikas Ashok · Ravi Mukkamala  
 Old Dominion University
