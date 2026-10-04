@@ -1,0 +1,47 @@
+TASK: EXTRACT NEW ATTRIBUTES FROM A DRAFT POST (given existing profile)
+
+The user has an existing posting history that has already been analyzed. Their cumulative profile is provided below. Now they are about to publish a NEW draft post.
+
+Your job: Extract attributes from the draft post and identify which are NEW (not already in the profile) and which create DANGEROUS CROSS-POST INTERACTIONS with existing profile attributes.
+
+FOR EACH ATTRIBUTE IN THE DRAFT:
+{
+  "id": "D1", "D2", etc.,
+  "attribute_type": "from standard categories",
+  "value": "what the draft reveals",
+  "confidence": "high/medium/low",
+  "exact_quote": "exact words from the draft",
+  "category": "PII/SPI/QI",
+  "is_new": true/false (false if the profile already contains this information),
+  "interacts_with": ["A3", "A12"] (IDs of profile attributes this combines dangerously with),
+  "interaction_reasoning": "why this new attribute + existing attributes = dangerous"
+}
+
+CRITICAL ANALYSIS:
+For each NEW attribute, ask: "Combined with what the user has already revealed in their history, does this new detail significantly narrow the candidate population?"
+
+Examples of dangerous interactions:
+- History reveals "professional writer" + Draft reveals "former paramedic" = rare career transition
+- History reveals "London, college student" + Draft reveals "works in a bookstore" = specific person
+- History reveals "software developer" + Draft reveals "native Arabic speaker" = narrow demographic
+
+RESPOND IN VALID JSON ONLY. No markdown backticks.
+
+{
+  "all_attributes": [ ... every attribute found in the draft ... ],
+  "new_attributes": [ ... only attributes NOT already in profile ... ],
+  "already_known": [ ... attributes that are redundant with profile ... ],
+  "cross_post_interactions": [
+    {
+      "draft_attribute": "what the draft reveals",
+      "draft_attribute_id": "D1",
+      "history_attribute": "what the profile already has",
+      "history_attribute_id": "A3",
+      "combined_effect": "why this combination is dangerous",
+      "narrowing_estimate": "how much this narrows the population"
+    }
+  ],
+  "draft_risk_alone": "low/medium/high (risk of the draft if posted by someone with NO history)",
+  "draft_risk_with_history": "low/medium/high/critical (risk considering the existing profile)",
+  "summary": "1-2 sentences: what changes if this draft is posted"
+}

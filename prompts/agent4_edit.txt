@@ -1,0 +1,51 @@
+TASK: MINIMAL PRIVACY-PRESERVING EDITS TO BREAK CROSS-POST IDENTIFICATION
+
+The user is about to publish a draft post. Analysis shows that certain phrases in this draft interact with their existing posting history to make them identifiable. Your job: suggest the SMALLEST changes that BREAK the cross-post identification chain.
+
+KEY PRINCIPLE: You can only edit the DRAFT. The history posts are already public and cannot be changed. The edits must break the link between the draft and the history.
+
+EDIT TYPES (in order of preference):
+1. generalize: make specific details less specific (PREFERRED)
+2. fuzz: alter exact numbers slightly
+3. rephrase: express the same idea with different words
+4. remove: delete entirely (LAST RESORT)
+
+FOR EACH EDIT:
+{
+  "priority": N (1 = most impactful),
+  "original_phrase": "exact text from draft",
+  "suggested_edit": "replacement text",
+  "edit_type": "generalize/fuzz/rephrase/remove",
+  "breaks_interaction_with": "which history attribute this edit disconnects from",
+  "candidate_set_before": "~N people with this phrase",
+  "candidate_set_after": "~N people after this edit",
+  "safety_gain": "Nx wider candidate set",
+  "what_user_loses": "what specificity is sacrificed",
+  "what_user_keeps": "what meaning and emotion is preserved",
+  "why_this_works": "one sentence on why this breaks the cross-post link"
+}
+
+RULES:
+- Target phrases that create CROSS-POST INTERACTIONS first
+- "I was a paramedic" might need to become "I have a medical background" if the history reveals "professional writer" and the combination of writer+paramedic is identifying
+- NEVER edit emotional content, mental health details, or the core purpose of the post
+- The edited post must read naturally
+- Sometimes editing just 2-3 key phrases is enough to break the identification chain
+
+FINAL OUTPUT:
+{
+  "edits": [ ... ],
+  "edited_post": "the FULL draft with all edits applied",
+  "original_score": "identifiability before edits",
+  "edited_score": "estimated identifiability after edits",
+  "candidate_set_original": "~N before",
+  "candidate_set_edited": "~N after",
+  "edits_count": N,
+  "words_changed": N,
+  "story_preserved": true/false,
+  "emotional_tone_preserved": true/false,
+  "core_question_preserved": true/false,
+  "cross_post_links_broken": ["list of history interactions that are now broken"]
+}
+
+RESPOND IN VALID JSON ONLY. No markdown backticks.

@@ -1,0 +1,54 @@
+TASK: PHRASE-LEVEL RISK RANKING FOR THE DRAFT POST
+
+You are analyzing a DRAFT post the user is about to publish. You know their existing profile from history and the risk analysis showing which draft attributes interact dangerously with history.
+
+Rank every identifying phrase in the DRAFT by how much risk it adds, specifically focusing on which phrases create CROSS-POST INTERACTIONS with the user's history.
+
+PHRASE RANKING (for each identifying phrase in the draft):
+{
+  "rank": N (1 = most dangerous),
+  "exact_phrase": "copied from draft",
+  "risk_contribution": "X%",
+  "damage_type": "cross-post" (interacts with history) / "standalone" (dangerous on its own) / "sensitive" (damaging if identity found),
+  "interacts_with_history": "which profile attribute(s) this combines with, or 'none'",
+  "history_post": "which history post contains the interacting attribute (if known)",
+  "removable": true/false,
+  "removal_impact": "how much the candidate set expands if this phrase is generalized"
+}
+
+THREAT MODELING:
+
+1. immediate_recognizers: People who could recognize the author from reading the draft combined with their public history.
+{
+  "who": "specific description",
+  "recognizing_details": "which details from draft + history give it away",
+  "likelihood_of_seeing": "high/medium/low",
+  "potential_consequence": "what could happen"
+}
+
+2. technical_attack_surface:
+{
+  "search_queries": [
+    {"platform": "...", "query": "exact search string combining draft + history details", "expected_results": "~N matches"}
+  ],
+  "estimated_time": "how long for a skilled analyst"
+}
+
+IMPORTANT:
+- Focus on phrases that are DANGEROUS BECAUSE OF CROSS-POST INTERACTION, not just dangerous alone
+- A phrase like "I was a paramedic" might be low-risk alone but CRITICAL if the history reveals "professional writer"
+- Risk contribution percentages should reflect the INTERACTION value, not standalone value
+- Phrase rankings should roughly sum to ~100%
+
+RESPOND IN VALID JSON ONLY. No markdown backticks.
+
+{
+  "phrase_rankings": [ ... ],
+  "immediate_recognizers": [ ... ],
+  "technical_attack_surface": {
+    "search_queries": [ ... ],
+    "estimated_time": "..."
+  },
+  "cross_platform_risk": "high/medium/low",
+  "cross_platform_reasoning": "..."
+}

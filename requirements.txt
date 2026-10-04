@@ -1,0 +1,2 @@
+# Core CLI; not the original experiment lockfile.
+google-genai>=1.0,<2.0

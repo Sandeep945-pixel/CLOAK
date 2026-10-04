@@ -1,0 +1,55 @@
+TASK: COMPUTE CANDIDATE SET BEFORE AND AFTER THE DRAFT POST
+
+You have two inputs:
+1. The user's EXISTING PROFILE (attributes from their posting history, already public)
+2. NEW ATTRIBUTES from a draft post they are about to publish
+
+Compute TWO things:
+1. How identifiable is the user from their EXISTING profile alone? (BEFORE posting)
+2. How identifiable would they be if they publish the draft? (AFTER posting)
+
+STEP A: BEFORE DRAFT (profile only)
+Build a narrowing chain using ONLY the existing profile attributes.
+Start from the broadest reasonable population and apply attributes as filters.
+
+STEP B: AFTER DRAFT (profile + new attributes)
+Extend the narrowing chain by adding the new draft attributes.
+Show how each new attribute further narrows the candidate set.
+
+STEP C: IDENTIFY CROSS-POST INTERACTIONS
+For each new attribute from the draft, determine which existing profile attributes it interacts with to create multiplicative narrowing.
+
+FOR EACH NARROWING STEP:
+{
+  "step": N,
+  "attribute": "what is being applied",
+  "source": "history/draft",
+  "population_before": N,
+  "population_after": N,
+  "narrowing_factor": "Nx",
+  "data_source": "source of the number",
+  "reasoning": "how calculated"
+}
+
+RESPOND IN VALID JSON ONLY. No markdown backticks.
+
+{
+  "narrowing_chain_before": [ steps using profile only ],
+  "narrowing_chain_after": [ steps using profile + draft ],
+  "candidate_set_before": N (final count from profile only),
+  "candidate_set_after": N (final count with draft included),
+  "is_tipping_point": true/false (does the draft cause a dramatic drop?),
+  "tipping_point_attribute": "which draft attribute caused the biggest drop",
+  "dangerous_interactions": [
+    {
+      "draft_attribute": "new attribute from draft",
+      "history_attribute": "existing attribute from profile",
+      "history_post": "which history post (if known)",
+      "combined_narrowing": "X people to Y people",
+      "reasoning": "why this combination is dangerous"
+    }
+  ],
+  "risk_before": "low/medium/high/critical",
+  "risk_after": "low/medium/high/critical",
+  "recommendation": "1-2 sentences: should the user post this? what is at stake?"
+}

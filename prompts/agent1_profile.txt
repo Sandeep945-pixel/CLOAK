@@ -1,0 +1,87 @@
+TASK: BUILD A CUMULATIVE ATTRIBUTE PROFILE FROM POST HISTORY
+
+You are analyzing MULTIPLE posts from the SAME anonymous Reddit user, posted across different subreddits over time. Extract EVERY identity-relevant attribute and tag it with which post it came from.
+
+The user's posts are separated by "=== POST N ===" markers. Each post may be from a different subreddit and time period. The COMBINATION of attributes across posts is what makes the user identifiable.
+
+EXTRACTION CATEGORIES (use the most specific one that fits):
+
+Identity & Demographics:
+  nationality, ethnicity_culture, age, gender, language_cue, physical_description
+
+Location:
+  location_explicit (named places), location_implicit (clues suggesting a place)
+
+Employment & Career:
+  employer_current, employer_previous, employer_description, occupation, experience_level, salary_financial, work_schedule, team_structure, colleague_description
+
+Education:
+  education_level, institution_description, program_details, cohort_details
+
+Immigration & Legal:
+  visa_status, immigration_timeline, legal_case_details
+
+Family & Relationships:
+  family_structure, partner_description, children_details, social_circle
+
+Health & Personal:
+  medical_condition, treatment_details, mental_health
+
+Timeline & Events:
+  timeline, unique_event
+
+Digital & Behavioral:
+  platform_mention, subreddit_membership (what participating in this subreddit implies)
+
+Other:
+  hobby_interest, vehicle_description, housing_details, financial_details, religious_affiliation, political_affiliation, military_details, cultural_knowledge, specialized_expertise, other
+
+FOR EACH ATTRIBUTE:
+{
+  "id": "A1", "A2", etc.,
+  "attribute_type": "from categories above",
+  "value": "what the post reveals",
+  "confidence": "high/medium/low",
+  "exact_quote": "exact words from the post",
+  "risk_level": "critical/high/medium/low",
+  "source_post": "POST N (the post number where this was found)",
+  "source_subreddit": "r/subreddit (if mentioned in the post header)",
+  "category": "PII/SPI/QI",
+  "reasoning": "one sentence on why this is identifying"
+}
+
+CATEGORY DEFINITIONS:
+- PII: directly narrows population (name, age, location, employer, occupation)
+- SPI: harmful if linked to identity (politics, health, substance use, finances, legal issues)
+- QI: identifying only IN COMBINATION with other attributes (career transitions, niche hobbies, unique events, cultural knowledge, specialized expertise)
+
+THEN IDENTIFY:
+
+1. dangerous_combinations: Groups of attributes from DIFFERENT posts that together narrow the population dramatically.
+{
+  "attribute_ids": ["A3", "A12", "A21"],
+  "source_posts": ["POST 2", "POST 6", "POST 11"],
+  "reasoning": "why these from different subreddits combine to identify the person"
+}
+
+2. immediate_recognizers: People who could recognize the author from reading ALL posts together.
+
+3. sensitive_exposure: Details not identifying but damaging if identity is discovered.
+
+IMPORTANT:
+- Tag EVERY attribute with its source post number. This is critical for downstream analysis.
+- Pay attention to SUBREDDIT MEMBERSHIP as a behavioral signal (posting in r/trees implies marijuana use).
+- Look for attributes that seem harmless alone but become identifying when combined across posts.
+- A "professional writer" in one post + "former paramedic" in another = rare career transition = highly identifying.
+
+RESPOND IN VALID JSON ONLY. No markdown backticks.
+
+{
+  "attributes": [ ... ],
+  "dangerous_combinations": [ ... ],
+  "immediate_recognizers": [ ... ],
+  "sensitive_exposure": [ ... ],
+  "total_attributes_found": N,
+  "overall_risk": "critical/high/medium/low",
+  "summary": "2-3 sentence summary of what an attacker learns from this post history."
+}

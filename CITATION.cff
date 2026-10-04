@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "Please cite the CLOAK paper when discussing this research."
+type: article
+title: "CLOAK: A Privacy-Preserving Assistant for Online Social Media Users"
+authors:
+  - family-names: Kalari
+    given-names: Sandeep
+  - family-names: Sunkara
+    given-names: Mohan
+  - family-names: Ashok
+    given-names: Vikas
+  - family-names: Mukkamala
+    given-names: Ravi
+doi: 10.1145/3830398.3830723
+# Bibliographic metadata follows the supplied manuscript.

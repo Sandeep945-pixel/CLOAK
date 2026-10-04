@@ -1,0 +1,14 @@
+FICTIONAL DEMONSTRATION ONLY. These posts do not describe a real person
+and are not part of the paper's evaluation dataset.
+
+=== POST 1 ===
+Subreddit: r/gradschool
+I am a doctoral student working on assistive robotics at Example University.
+
+=== POST 2 ===
+Subreddit: r/cooking
+Our small graduate cohort holds a monthly regional cooking night.
+
+=== POST 3 ===
+Subreddit: r/cycling
+I volunteer at the campus bicycle repair workshop on Thursday evenings.
