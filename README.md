@@ -4,6 +4,8 @@
 
 **Research paper accepted at ACM UIST 2026** — the 39th Annual ACM Symposium on User Interface Software and Technology.
 
+**Average reviewer score: approximately 4.25/5.**
+
 CLOAK is an experimental privacy-awareness assistant. Give it your own posting history and a draft you are considering sharing. It examines how details across those texts may combine, explains potentially revealing phrases, and suggests edits for you to review.
 
 [Read the paper](docs/CLOAK-paper.pdf) · [Paper DOI](https://doi.org/10.1145/3830398.3830723) · [Responsible use](RESPONSIBLE_USE.md)
