@@ -2,9 +2,9 @@
 
 **Understand what your next post could reveal.**
 
-**Research paper accepted at ACM UIST 2026** — the 39th Annual ACM Symposium on User Interface Software and Technology.
+**Accepted at ACM UIST 2026 · Top 8% of submissions by initial review score.**
 
-**Average reviewer score: approximately 4.25/5.**
+[Conference review-score statistics](https://uist.acm.org/2026/announcements/)
 
 CLOAK is an experimental privacy-awareness assistant. Give it your own posting history and a draft you are considering sharing. It examines how details across those texts may combine, explains potentially revealing phrases, and suggests edits for you to review.
 
