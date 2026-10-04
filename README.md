@@ -2,7 +2,7 @@
 
 **Understand what your next post could reveal.**
 
-**Accepted at ACM UIST 2026 · Top 8% of submissions by initial review score.**
+**Accepted at ACM UIST 2026 · Top 8% of submissions out of 1251 total.**
 
 [Conference review-score statistics](https://uist.acm.org/2026/announcements/)
 
